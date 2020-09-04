@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     {
        
 
-        powerUpIndicator.transform.position = transform.position + new Vector3(3.34f, -0.5f, 2.9f);
+        powerUpIndicator.transform.position = transform.position + new Vector3(3.34f, -0.95f, 2.9f);
         if (transform.position.y < -10)
         {
             Destroy(gameObject);
