@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
 
     public bool hasPowerUp = false;
     public SpawnManager spawnManager;
-    
+    private Vector3 powerUpIndicatorPostion = new Vector3(3.34f, -2.2f, 2.9f);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
     {
        
 
-        powerUpIndicator.transform.position = transform.position + new Vector3(3.34f, -0.95f, 2.9f);
+        powerUpIndicator.transform.position = transform.position + powerUpIndicatorPostion;
         if (transform.position.y < -10)
         {
             Destroy(gameObject);
