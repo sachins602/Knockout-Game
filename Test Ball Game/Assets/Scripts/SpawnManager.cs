@@ -22,7 +22,7 @@ public class SpawnManager : MonoBehaviour
     //public TextMeshProUGUI highScoreTextHome;
     //private GameStart gameStart;
     public Button restartButton;
-    public Button mainMenuButton; 
+    //public Button mainMenuButton; 
     public bool gameOver;
     
    // private AudioSource spawnAudio;
@@ -103,7 +103,7 @@ public class SpawnManager : MonoBehaviour
         waveCounterText.gameObject.SetActive(false);
       restartButton.gameObject.SetActive(true);
       gameOverText.gameObject.SetActive(true);
-      mainMenuButton.gameObject.SetActive(true);
+      //mainMenuButton.gameObject.SetActive(true);
       highScoreText.gameObject.SetActive(true);
     }
     public void RestartGame()

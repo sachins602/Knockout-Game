@@ -15,17 +15,17 @@ public class GameStart : MonoBehaviour
     public void PlayGame()
     {
         Time.timeScale = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
   
     public void QuitGame()
     {
         Application.Quit();
     }
-    public void ReturnToMainMenu()
+    /*public void ReturnToMainMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-    }
+    }*/
     public void UiElementsToggle()
     {
         FirstMenu.gameObject.SetActive(false);
