@@ -6,16 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class GameStart : MonoBehaviour
 {
-    public GameObject firstMenu;
+    public GameObject FirstMenu;
     public GameObject SecondMenu;
+    public GameObject GoogleMenu;
    
 
     // Start is called before the first frame update
     public void PlayGame()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+  
     public void QuitGame()
     {
         Application.Quit();
@@ -26,13 +28,20 @@ public class GameStart : MonoBehaviour
     }
     public void UiElementsToggle()
     {
-        firstMenu.gameObject.SetActive(false);
+        FirstMenu.gameObject.SetActive(false);
         SecondMenu.gameObject.SetActive(true);
     }
     public void CreditsToMenu()
     {
         SecondMenu.gameObject.SetActive(false);
-        firstMenu.gameObject.SetActive(true);
+        FirstMenu.gameObject.SetActive(true);
+    }
+    public void GoogleStuffButton()
+    {
+        FirstMenu.gameObject.SetActive(false);
+        SecondMenu.gameObject.SetActive(false);
+        GoogleMenu.gameObject.SetActive(true);
+        
     }
    
 }
