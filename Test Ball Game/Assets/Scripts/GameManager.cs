@@ -15,7 +15,13 @@ public class GameManager : MonoBehaviour
 	public GameObject startPage;
 	public GameObject gameOverPage;
 	public GameObject countdownPage;
+
 	public TextMeshProUGUI scoreText;
+	public TextMeshProUGUI gameOverText;
+	public TextMeshProUGUI waveCounterText;
+	public TextMeshProUGUI highScoreText;
+	public TextMeshProUGUI finalScoreText;
+
 
 	enum PageState
 	{
@@ -25,7 +31,7 @@ public class GameManager : MonoBehaviour
 		GameOver
 	}
 
-	int score = 0;
+	//int score = 0;
 	bool gameOver = true;
 
 	public bool GameOver { get { return gameOver; } }
@@ -45,15 +51,15 @@ public class GameManager : MonoBehaviour
 
 	void OnEnable()
 	{
-		TapController.OnPlayerDied += OnPlayerDied;
-		TapController.OnPlayerScored += OnPlayerScored;
+		PlayerController.OnPlayerDied += OnPlayerDied;
+		PlayerController.OnPlayerScored += OnPlayerScored;
 		CountdownText.OnCountdownFinished += OnCountdownFinished;
 	}
 
 	void OnDisable()
 	{
-		TapController.OnPlayerDied -= OnPlayerDied;
-		TapController.OnPlayerScored -= OnPlayerScored;
+		PlayerController.OnPlayerDied -= OnPlayerDied;
+		PlayerController.OnPlayerScored -= OnPlayerScored;
 		CountdownText.OnCountdownFinished -= OnCountdownFinished;
 	}
 
@@ -109,6 +115,20 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public void UpdateScore(int scoreToAdd)
+	{
+		score += scoreToAdd;
+		scoreText.text = "SCORE : " + score;
+		finalScoreText.text = "SCORE : " + score;
+		if (score > PlayerPrefs.GetInt("HighScore", 0))
+		{
+			PlayerPrefs.SetInt("HighScore", score);
+			highScoreText.text = "HIGHSCORE: " + score;
+			//highScoreTextHome.text = "HIGHSCORE: " + score;
+		}
+
+	}
+
 	public void ConfirmGameOver()
 	{
 		SetPageState(PageState.Start);
@@ -120,5 +140,20 @@ public class GameManager : MonoBehaviour
 	{
 		SetPageState(PageState.Countdown);
 	}
-
+	public void GameOver()
+	{
+		//spawnAudio.PlayOneShot(gameOverAudio, 1.0f);
+		finalScoreText.gameObject.SetActive(true);
+		scoreText.gameObject.SetActive(false);
+		waveCounterText.gameObject.SetActive(false);
+		restartButton.gameObject.SetActive(true);
+		gameOverText.gameObject.SetActive(true);
+		//mainMenuButton.gameObject.SetActive(true);
+		highScoreText.gameObject.SetActive(true);
+	}
+	public void RestartGame()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		Time.timeScale = 1;
+	}
 }

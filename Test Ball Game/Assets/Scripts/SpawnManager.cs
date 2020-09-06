@@ -14,16 +14,11 @@ public class SpawnManager : MonoBehaviour
     public int waveNumber = 0;
     private int score;
     private GameObject[] powerUpCount;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI gameOverText;
-    public TextMeshProUGUI waveCounterText;
-    public TextMeshProUGUI highScoreText;
-    public TextMeshProUGUI finalScoreText;
+    
     //public TextMeshProUGUI highScoreTextHome;
     //private GameStart gameStart;
     public Button restartButton;
     //public Button mainMenuButton; 
-    public bool gameOver;
     
    // private AudioSource spawnAudio;
    // public AudioClip gameOverAudio;
@@ -82,33 +77,6 @@ public class SpawnManager : MonoBehaviour
         Vector3 randomPos = new Vector3(spawnPosX, 1, spawnPosZ);
         return randomPos;
     }
-    public void UpdateScore(int scoreToAdd)
-    {
-        score += scoreToAdd;
-        scoreText.text = "SCORE : " + score;
-        finalScoreText.text = "SCORE : " + score;
-        if (score > PlayerPrefs.GetInt("HighScore", 0))
-        {
-            PlayerPrefs.SetInt("HighScore", score);
-            highScoreText.text = "HIGHSCORE: " + score;
-            //highScoreTextHome.text = "HIGHSCORE: " + score;
-        }
+    
 
-    }
-    public void GameOver()
-    {
-        //spawnAudio.PlayOneShot(gameOverAudio, 1.0f);
-        finalScoreText.gameObject.SetActive(true);
-        scoreText.gameObject.SetActive(false);
-        waveCounterText.gameObject.SetActive(false);
-      restartButton.gameObject.SetActive(true);
-      gameOverText.gameObject.SetActive(true);
-      //mainMenuButton.gameObject.SetActive(true);
-      highScoreText.gameObject.SetActive(true);
-    }
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-       Time.timeScale = 1;
-   }
 }

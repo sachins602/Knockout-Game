@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     private GameObject player;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
         player = GameObject.Find("Player");
         playerAudio = GetComponent<AudioSource>();
         spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+       // playerRb.simulated = false;
     }
     void FixedUpdate()
     {
