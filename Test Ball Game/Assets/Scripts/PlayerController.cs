@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     private GameObject player;
     private Rigidbody playerRb;
+    public ParticleSystem sparkParticle;
+    public ParticleSystem smokeTrailParticle;
     //public Joystick joystick;
     public float playerSpeed;
     public float maxMovement;
