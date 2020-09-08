@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
+    private MenuBehaviours menuBehaviours;
+
     public GameObject enemyPrefab;
     public GameObject powerUpPrefab;
     private float spawnRange = 7.0f;
@@ -14,10 +16,12 @@ public class SpawnManager : MonoBehaviour
     public int waveNumber = 0;
     private int score;
     private GameObject[] powerUpCount;
-    
+
+
+
     //public TextMeshProUGUI highScoreTextHome;
     //private GameStart gameStart;
-    public Button restartButton;
+   // public Button restartButton;
     //public Button mainMenuButton; 
     
    // private AudioSource spawnAudio;
@@ -26,11 +30,12 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        highScoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
+        menuBehaviours = GameObject.Find("Canvas").GetComponent<MenuBehaviours>();
+        menuBehaviours.highScoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
       // highScoreTextHome.text = "HIGHSCORE: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
         SpawnEnemyWave(waveNumber);
         Instantiate(powerUpPrefab, RandomPostionGenerator(), powerUpPrefab.transform.rotation);
-
+        
     }
 
     // Update is called once per frame
@@ -42,7 +47,7 @@ public class SpawnManager : MonoBehaviour
         if (enemyCount == 0)
         {
             waveNumber++;
-            waveCounterText.text = "Wave: " + waveNumber;
+            menuBehaviours.waveCounterText.text = "Wave: " + waveNumber;
             SpawnEnemyWave(waveNumber);
             if (powerCount < 1)
             {
@@ -77,6 +82,24 @@ public class SpawnManager : MonoBehaviour
         Vector3 randomPos = new Vector3(spawnPosX, 1, spawnPosZ);
         return randomPos;
     }
-    
 
+    public void UpdateScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        menuBehaviours.scoreText.text = "SCORE : " + score;
+        menuBehaviours.finalScoreText.text = "SCORE : " + score;
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            menuBehaviours.highScoreText.text = "HIGHSCORE: " + score;
+            //highScoreTextHome.text = "HIGHSCORE: " + score;
+        }
+
+    }
+    public void GameOver()
+    {
+        menuBehaviours.gameOverUi.SetActive(true);
+        Time.timeScale = 0f;
+    }
+  
 }
