@@ -9,6 +9,7 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject powerUpPrefab;
+    public GameObject waveObject;
     private float spawnRange = 7.0f;
     public int enemyCount;
     public int waveNumber = 0;
@@ -17,7 +18,7 @@ public class SpawnManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI waveCounterText;
-    public TextMeshProUGUI highScoreText;
+    //public TextMeshProUGUI highScoreText;
     public TextMeshProUGUI finalScoreText;
     //public TextMeshProUGUI highScoreTextHome;
     //private GameStart gameStart;
@@ -31,7 +32,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        highScoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
+        //highScoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
       // highScoreTextHome.text = "HIGHSCORE: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
         SpawnEnemyWave(waveNumber);
         Instantiate(powerUpPrefab, RandomPostionGenerator(), powerUpPrefab.transform.rotation);
@@ -47,7 +48,7 @@ public class SpawnManager : MonoBehaviour
         if (enemyCount == 0)
         {
             waveNumber++;
-            waveCounterText.text = "Wave: " + waveNumber;
+            waveCounterText.text = waveNumber.ToString();
             SpawnEnemyWave(waveNumber);
             if (powerCount < 1)
             {
@@ -85,26 +86,28 @@ public class SpawnManager : MonoBehaviour
     public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
-        scoreText.text = "SCORE : " + score;
-        finalScoreText.text = "SCORE : " + score;
+        scoreText.text = score.ToString();
+        finalScoreText.text = score.ToString();
         if (score > PlayerPrefs.GetInt("HighScore", 0))
         {
             PlayerPrefs.SetInt("HighScore", score);
-            highScoreText.text = "HIGHSCORE: " + score;
+            //highScoreText.text = "HIGHSCORE: " + score;
             //highScoreTextHome.text = "HIGHSCORE: " + score;
         }
 
     }
     public void GameOver()
     {
+        AdManager.instance.ShowInterstitialAd();
         //spawnAudio.PlayOneShot(gameOverAudio, 1.0f);
         finalScoreText.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(false);
-        waveCounterText.gameObject.SetActive(false);
+        waveObject.gameObject.SetActive(false);
+        //waveCounterText.gameObject.SetActive(false);
       restartButton.gameObject.SetActive(true);
       gameOverText.gameObject.SetActive(true);
       mainMenuButton.gameObject.SetActive(true);
-      highScoreText.gameObject.SetActive(true);
+      //highScoreText.gameObject.SetActive(true);
     }
     public void RestartGame()
     {
