@@ -36,6 +36,8 @@ public class SpawnManager : MonoBehaviour
       // highScoreTextHome.text = "HIGHSCORE: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
         SpawnEnemyWave(waveNumber);
         Instantiate(powerUpPrefab, RandomPostionGenerator(), powerUpPrefab.transform.rotation);
+        AdManager.instance.RequestBanner();
+        AdManager.instance.ShowBannerAd();
 
     }
 
@@ -98,6 +100,7 @@ public class SpawnManager : MonoBehaviour
     }
     public void GameOver()
     {
+        AdManager.instance.HideBannerAd();
         AdManager.instance.ShowInterstitialAd();
         //spawnAudio.PlayOneShot(gameOverAudio, 1.0f);
         finalScoreText.gameObject.SetActive(true);

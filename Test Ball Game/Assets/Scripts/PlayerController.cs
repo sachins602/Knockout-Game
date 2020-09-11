@@ -123,6 +123,10 @@ public class PlayerController : MonoBehaviour
                 playerRb.AddForce(movement * playerSpeed * Time.deltaTime);
 
 
+                //playerRb.transform.Translate(movement* playerSpeed * Time.deltaTime);
+
+                //playerRb.AddForce(movement * playerSpeed * Time.deltaTime, ForceMode.VelocityChange);
+
 
                /* Vector3 movement = new Vector3(transform.position.x + touch.deltaPosition.x,
                 0.0f, transform.position.z + touch.deltaPosition.y);

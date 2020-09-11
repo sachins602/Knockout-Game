@@ -14,9 +14,10 @@ public class GameStart : MonoBehaviour
     // Start is called before the first frame update
     public void PlayGame()
     {
-        
+        AdManager.instance.HideBannerAd();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1;
+
     }
   
     public void QuitGame()
@@ -26,7 +27,8 @@ public class GameStart : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        
+        AdManager.instance.RequestBanner();
+        AdManager.instance.ShowBannerAd();
     }
     public void MenuToCredits()
     {
