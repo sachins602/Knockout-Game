@@ -11,7 +11,8 @@ public class ScoreManager : MonoBehaviour
     {
 
         highScoreTextHome.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
-        PlayerPrefs.SetInt("ScoreToUpdate", PlayerPrefs.GetInt("ScoreToUpdate", 0) + 1);
+        PlayerPrefs.SetInt("HighScore", PlayerPrefs.GetInt("HighScore", 0));
+      
     }
 
 }

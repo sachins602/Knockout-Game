@@ -20,6 +20,12 @@ public class SpawnManager : MonoBehaviour
     public TextMeshProUGUI waveCounterText;
     //public TextMeshProUGUI highScoreText;
     public TextMeshProUGUI finalScoreText;
+
+    public GameObject inGameMenu;
+    public GameObject gameOverMenu;
+    public GameObject coinCalculateMenu;
+
+
     //public TextMeshProUGUI highScoreTextHome;
     //private GameStart gameStart;
     public Button restartButton;
@@ -103,14 +109,8 @@ public class SpawnManager : MonoBehaviour
         AdManager.instance.HideBannerAd();
         AdManager.instance.ShowInterstitialAd();
         //spawnAudio.PlayOneShot(gameOverAudio, 1.0f);
-        finalScoreText.gameObject.SetActive(true);
-        scoreText.gameObject.SetActive(false);
-        waveObject.gameObject.SetActive(false);
-        //waveCounterText.gameObject.SetActive(false);
-      restartButton.gameObject.SetActive(true);
-      gameOverText.gameObject.SetActive(true);
-      mainMenuButton.gameObject.SetActive(true);
-      //highScoreText.gameObject.SetActive(true);
+        inGameMenu.SetActive(false);
+        gameOverMenu.SetActive(true);
     }
     public void RestartGame()
     {

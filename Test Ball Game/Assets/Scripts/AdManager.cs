@@ -67,8 +67,8 @@ public class AdManager : MonoBehaviour
     }
     public void HideBannerAd()
     {
-        this.bannerView.Hide();
-        this.bannerView.Destroy();
+        
+        bannerView.Destroy();
     }
 
     public void RequestInterstitial()

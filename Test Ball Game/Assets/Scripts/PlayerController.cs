@@ -83,17 +83,25 @@ public class PlayerController : MonoBehaviour
         Vector3 awayFromThePlayer = collision.gameObject.transform.position - transform.position;
         if (collision.gameObject.CompareTag("Enemy") && hasPowerUp)
         {
+            ContactPoint contact = collision.contacts[0];
+            Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
+            Vector3 position = contact.point;
+            Instantiate(sparkParticle, position, rotation);
+            //Destroy(particle);
 
 
-            sparkParticle.Play();
             playerAudio.PlayOneShot(bumpAudio, 1.0f);
             enemyRb.AddForce(awayFromThePlayer * powerUpStrength, ForceMode.Impulse);
             //Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerUp);
         }
         else if (collision.gameObject.CompareTag("Enemy") && !hasPowerUp)
         {
-
-            sparkParticle.Play();
+            ContactPoint contact = collision.contacts[0];
+            Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
+            Vector3 position = contact.point;
+            Instantiate(sparkParticle, position, rotation);
+            //Destroy(particle);
+            
             playerAudio.PlayOneShot(bumpAudio, 1.0f);
             enemyRb.AddForce(awayFromThePlayer * defaultPlayerStrength, ForceMode.Impulse);
             //Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerUp);
@@ -144,4 +152,5 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(horizontalInput, 0.0f, verticalInput);
         playerRb.AddForce(movement * playerSpeed);*/
     }
+ 
 }
