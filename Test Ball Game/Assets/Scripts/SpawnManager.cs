@@ -95,6 +95,7 @@ public class SpawnManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", score);
             //highScoreText.text = "HIGHSCORE: " + score;
             //highScoreTextHome.text = "HIGHSCORE: " + score;
+            CloudOnceServices.instance.SubmitScoreToLeaderboard(PlayerPrefs.GetInt("HighScore"));
         }
 
     }
