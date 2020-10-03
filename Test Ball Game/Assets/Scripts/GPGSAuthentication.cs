@@ -9,11 +9,15 @@ public class GPGSAuthentication : MonoBehaviour
 {
     public static PlayGamesPlatform platform;
     // Start is called before the first frame update
-    void Start()
+     void Start()
     {
+
         if(platform == null)
         {
+            
+
             PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+              
             //For cloud save replace above line with the one below
             //PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().EnableSavedGames().Build();
 
@@ -26,7 +30,7 @@ public class GPGSAuthentication : MonoBehaviour
         // requests an ID token be generated.  This OAuth token can be used to
         //  identify the player to other services such as Firebase.
         //.RequestIdToken()
-        //.Build();
+       // .Build();
 
             PlayGamesPlatform.InitializeInstance(config);
             // recommended for debugging:

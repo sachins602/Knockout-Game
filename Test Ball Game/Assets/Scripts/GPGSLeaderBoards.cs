@@ -10,15 +10,15 @@ public void ShowLeaderBoard()
     }
     public void UpdateLeaderBoardScore()
     { 
-        if (PlayerPrefs.GetInt("HighScore", 0) == 0)
+        if (PlayerPrefs.GetInt("ScoreToUpdate", 0) == 0)
         {
             return;
         }
-        Social.ReportScore(PlayerPrefs.GetInt("HighScore", 1), GPGSIds.leaderboard_highscore, (bool success) =>
+        Social.ReportScore(PlayerPrefs.GetInt("ScoreToUpdate", 1), GPGSIds.leaderboard_highscore, (bool success) =>
         {
             if(success)
             {
-                PlayerPrefs.SetInt("HighScore", 0);
+                PlayerPrefs.SetInt("ScoreToUpdate", 0);
             }
         });
     }

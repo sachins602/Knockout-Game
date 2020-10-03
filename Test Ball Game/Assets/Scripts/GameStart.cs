@@ -8,18 +8,15 @@ public class GameStart : MonoBehaviour
 {
     public GameObject FirstMenu;
     public GameObject SecondMenu;
-    //public GameObject SkinMenu;
+    public GameObject SkinMenu;
    
 
     // Start is called before the first frame update
     public void PlayGame()
     {
-        
-        //SceneManager.LoadScene(1);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         AdManager.instance.HideBannerAd();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1;
-        Debug.Log("Scene Change Code Is running");
 
     }
   
@@ -43,7 +40,7 @@ public class GameStart : MonoBehaviour
     {
         SecondMenu.gameObject.SetActive(false);
         FirstMenu.gameObject.SetActive(true);
-      //  SkinMenu.gameObject.SetActive(false);
+        SkinMenu.gameObject.SetActive(false);
       
     }
     public void GoogleStuffButton()
@@ -57,7 +54,7 @@ public class GameStart : MonoBehaviour
     {
         FirstMenu.gameObject.SetActive(false);
         SecondMenu.gameObject.SetActive(false);
-        //SkinMenu.gameObject.SetActive(true);
+        SkinMenu.gameObject.SetActive(true);
     }
    
 }
