@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip powerUpAudio;
 
 
-    private float powerUpStrength = 18.0f;
-    private float defaultPlayerStrength = 6.0f;
+    private float powerUpStrength = 40.0f;
+    private float defaultPlayerStrength = 15.0f;
 
     private Touch touch;
     //private float speedModifier;

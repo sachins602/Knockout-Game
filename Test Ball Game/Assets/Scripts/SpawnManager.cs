@@ -25,6 +25,9 @@ public class SpawnManager : MonoBehaviour
     public Button restartButton;
     public Button mainMenuButton; 
     public bool gameOver;
+
+    public GameObject inGameMenu;
+    public GameObject gameOverMenu;
     
    // private AudioSource spawnAudio;
    // public AudioClip gameOverAudio;
@@ -104,14 +107,9 @@ public class SpawnManager : MonoBehaviour
         AdManager.instance.HideBannerAd();
         AdManager.instance.ShowInterstitialAd();
         //spawnAudio.PlayOneShot(gameOverAudio, 1.0f);
-        finalScoreText.gameObject.SetActive(true);
-        scoreText.gameObject.SetActive(false);
-        waveObject.gameObject.SetActive(false);
-        //waveCounterText.gameObject.SetActive(false);
-      restartButton.gameObject.SetActive(true);
-      gameOverText.gameObject.SetActive(true);
-      mainMenuButton.gameObject.SetActive(true);
-      //highScoreText.gameObject.SetActive(true);
+        inGameMenu.SetActive(false);
+        gameOverMenu.SetActive(true);
+        //highScoreText.gameObject.SetActive(true);
     }
     public void RestartGame()
     {
